@@ -18,6 +18,10 @@
     unitList: document.getElementById("unitList"),
     allUnitsButton: document.getElementById("allUnitsButton"),
     mistakesButton: document.getElementById("mistakesButton"),
+    unitDrawer: document.getElementById("unitDrawer"),
+    drawerBackdrop: document.getElementById("drawerBackdrop"),
+    openDrawerButton: document.getElementById("openDrawerButton"),
+    closeDrawerButton: document.getElementById("closeDrawerButton"),
     modeLabel: document.getElementById("modeLabel"),
     quizTitle: document.getElementById("quizTitle"),
     scorePill: document.getElementById("scorePill"),
@@ -50,6 +54,22 @@
 
   function setMistakeIds(ids) {
     localStorage.setItem(storageKey, JSON.stringify([...new Set(ids)]));
+  }
+
+  function openDrawer() {
+    document.body.classList.add("drawer-open");
+    els.openDrawerButton.setAttribute("aria-expanded", "true");
+  }
+
+  function closeDrawer() {
+    document.body.classList.remove("drawer-open");
+    els.openDrawerButton.setAttribute("aria-expanded", "false");
+  }
+
+  function returnToQuizTop() {
+    if (window.matchMedia("(max-width: 880px)").matches) {
+      els.quizTitle.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 
   function shuffle(items) {
@@ -284,11 +304,29 @@
 
   els.unitList.addEventListener("click", (event) => {
     const button = event.target.closest(".unit-button");
-    if (button) setSelection("unit", button.dataset.unitId);
+    if (button) {
+      setSelection("unit", button.dataset.unitId);
+      closeDrawer();
+      returnToQuizTop();
+    }
   });
 
-  els.allUnitsButton.addEventListener("click", () => setSelection("all"));
-  els.mistakesButton.addEventListener("click", () => setSelection("mistakes"));
+  els.allUnitsButton.addEventListener("click", () => {
+    setSelection("all");
+    closeDrawer();
+    returnToQuizTop();
+  });
+  els.mistakesButton.addEventListener("click", () => {
+    setSelection("mistakes");
+    closeDrawer();
+    returnToQuizTop();
+  });
+  els.openDrawerButton.addEventListener("click", openDrawer);
+  els.closeDrawerButton.addEventListener("click", closeDrawer);
+  els.drawerBackdrop.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeDrawer();
+  });
   els.startButton.addEventListener("click", startQuiz);
   els.prevButton.addEventListener("click", () => {
     state.index = Math.max(0, state.index - 1);
