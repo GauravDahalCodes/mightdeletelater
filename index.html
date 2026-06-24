@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nepal Police SI Computer MCQ Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Quiz units">
+        <div class="brand">
+          <span class="badge">SI</span>
+          <div>
+            <h1>Nepal Police SI</h1>
+            <p>Computer MCQ practice</p>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <div>
+            <strong id="totalQuestions">0</strong>
+            <span>Questions</span>
+          </div>
+          <div>
+            <strong id="totalUnits">0</strong>
+            <span>Units</span>
+          </div>
+        </div>
+
+        <div class="unit-tools">
+          <button class="secondary" id="allUnitsButton" type="button">All units</button>
+          <button class="secondary" id="mistakesButton" type="button">Mistakes</button>
+        </div>
+
+        <nav class="unit-list" id="unitList"></nav>
+      </aside>
+
+      <main class="quiz-panel">
+        <section class="quiz-header">
+          <div>
+            <p class="eyebrow" id="modeLabel">Choose a unit</p>
+            <h2 id="quizTitle">Select a unit to begin</h2>
+          </div>
+          <div class="score-pill" id="scorePill">Ready</div>
+        </section>
+
+        <section class="controls">
+          <label for="questionCount">Question count</label>
+          <select id="questionCount"></select>
+          <label class="check-control">
+            <input type="checkbox" id="shuffleToggle" checked>
+            <span>Shuffle</span>
+          </label>
+          <button class="primary" id="startButton" type="button">Start quiz</button>
+        </section>
+
+        <section class="progress-wrap" aria-label="Quiz progress">
+          <div class="progress-meta">
+            <span id="progressText">No quiz running</span>
+            <span id="answeredText">0 answered</span>
+          </div>
+          <div class="progress-bar">
+            <span id="progressBar"></span>
+          </div>
+        </section>
+
+        <section class="question-stage" id="questionStage">
+          <div class="empty-state">
+            <div class="empty-mark">?</div>
+            <h3>Pick a unit from the left.</h3>
+            <p>Your answers stay private in this browser. After submitting, only the missed questions are shown for focused retake.</p>
+          </div>
+        </section>
+
+        <section class="nav-row">
+          <button class="secondary" id="prevButton" type="button">Previous</button>
+          <button class="secondary" id="nextButton" type="button">Next</button>
+          <button class="primary" id="submitButton" type="button">Submit answers</button>
+        </section>
+
+        <section class="results" id="results" hidden></section>
+      </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
