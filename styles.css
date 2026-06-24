@@ -555,8 +555,7 @@ button:disabled {
   }
 
   .score-pill {
-    grid-column: 2;
-    justify-self: start;
+    display: none;
   }
 
   h2 {
